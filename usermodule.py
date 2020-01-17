@@ -5,7 +5,7 @@ import os
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 
-def herosturn(hh,cpuh, sword, shield):
+def herosturn(hh,cpuh):
   print('It\'s your turn!')
   print('Your health is:', hh)
   print('Monster\'s health is', cpuh)
@@ -16,17 +16,6 @@ def herosturn(hh,cpuh, sword, shield):
     attack = True
     print('\nYou chose', choice)
     damage = random.randint(15, 25)
-    if 'sword' in herositem:
-      if 'diamond' in herositem:
-        damage = damage * 2
-      elif 'gold' in herositem:
-        damage = damage * 1.8
-      elif 'silver' in herositem:
-        damage = damage * 1.6
-      elif 'iron' in herositem:
-        damage = damage * 1.4
-      elif 'wooden' in herositem:
-        damage = damage * 1.2
     print('You did', damage, 'damage!')
     cpuh = cpuh - damage
     print('Monster\'s health is now:', cpuh)
@@ -55,17 +44,6 @@ def herosturn(hh,cpuh, sword, shield):
     time.sleep(4)
     cls()
     return attack , hh
-
-  elif choice == 'Defeat' or choice == 'defeat':
-    attack = True
-    print('\nYou chose', choice)
-    damage = 1099
-    print('You did', damage, 'damage!')
-    cpuh = cpuh - damage
-    print('Monster\'s health is now:', cpuh)
-    time.sleep(4)
-    cls()
-    return attack , cpuh
 
   else:
     print("You chose nothing and the monster laughed")
@@ -136,11 +114,7 @@ cls()
 
 hh= 100
 cpuh=100
-level = 1
-material = 'wooden', 'iron', 'silver', 'gold', 'diamond'
-items = 'shield', 'sword'
-sword = None
-shield = None
+
 
 
 
@@ -148,7 +122,7 @@ shield = None
 
 while True:
   placehold = 0
-  placehold = herosturn(hh,cpuh, sword, shield)
+  placehold = herosturn(hh,cpuh)
   
   if placehold[0] == True:
     cpuh = placehold[1]
@@ -183,71 +157,4 @@ while True:
     time.sleep(3)
     print('Prepare for the next monster, this one will be tougher')
     break
-
-
-hitem1 = random.randint(0,4)
-hmat1 = random.randint(0,1)
-
-hitem = material[hitem1]
-hmat = items[hmat1]
-
-herositem = hitem + ' ' + hmat
-
-print('\nYou got a',herositem+'!','\n')
-
-
-
-hh = 100
-cpuh = 120
-level = 2
-
-while True:
-  placehold = 0
-  placehold = herosturn(hh,cpuh, sword, shield)
-  
-  if placehold[0] == True:
-    cpuh = placehold[1]
-  else:
-    hh = placehold[1]
-
-
-
-  if hh < 0:
-    print('Oh no you died')
-    break
-
-  if cpuh < 0:
-    print('\ncongradulations you killed the monster')
-    time.sleep(3)
-    print('Prepare for the next monster, this one will be tougher')
-    break
-
-  placehold = computersturn(cpuh,hh)
-
-  if placehold[0] == True:
-    hh = placehold[1]
-  else:
-    cpuh = placehold[1]
-
-  if hh <= 0:
-    print('Oh no you died')
-    break
-
-  if cpuh <= 0:
-    print('\ncongradulations you killed the monster')
-    time.sleep(3)
-    x = random.randint(0,5)
-    y=random.randint(0,5)
-    print('Prepare for the next monster, this one will be tougher')
-    break
-
-hitem1 = random.randint(0,4)
-hmat1 = random.randint(0,1)
-
-hitem = material[hitem1]
-hmat = items[hmat1]
-
-herositem = hitem + ' ' + hmat
-
-print('\nYou got a',herositem+'!','\n')
 
