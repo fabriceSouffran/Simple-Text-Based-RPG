@@ -5,7 +5,7 @@ import os
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 
-def herosturn(hh,cpuh, sword, shield):
+def herosturn(hh,cpuh, sword):
   print('It\'s your turn!')
   print('Your health is:', hh)
   print('Monster\'s health is', cpuh)
@@ -16,16 +16,16 @@ def herosturn(hh,cpuh, sword, shield):
     attack = True
     print('\nYou chose', choice)
     damage = random.randint(15, 25)
-    if 'sword' in herositem:
-      if 'diamond' in herositem:
+    if 'sword' in sword:
+      if 'diamond' in sword:
         damage = damage * 2
-      elif 'gold' in herositem:
+      elif 'gold' in sword:
         damage = damage * 1.8
-      elif 'silver' in herositem:
+      elif 'silver' in sword:
         damage = damage * 1.6
-      elif 'iron' in herositem:
+      elif 'iron' in sword:
         damage = damage * 1.4
-      elif 'wooden' in herositem:
+      elif 'wooden' in sword:
         damage = damage * 1.2
     print('You did', damage, 'damage!')
     cpuh = cpuh - damage
@@ -73,7 +73,7 @@ def herosturn(hh,cpuh, sword, shield):
 
 
 
-def computersturn(cpuh, hh):
+def computersturn(cpuh, hh, shield):
   print('It\'s the monster\'s turn!')
   print('Your health is:', hh)
   print('Monster\'s health is', cpuh)
@@ -84,6 +84,17 @@ def computersturn(cpuh, hh):
     print("\nMonster chooses sword!")
     attack = True
     damage = random.randint(15, 25)
+    if 'shield' in shield:
+      if 'diamond' in shield:
+        damage = damage * .2
+      elif 'gold' in shield:
+        damage = damage * .4
+      elif 'silver' in shield:
+        damage = damage * .6
+      elif 'iron' in shield:
+        damage = damage * .8
+      elif 'wooden' in shield:
+        damage = damage * .9
     print('Monster did', damage, 'damage!')
     hh = hh - damage
     print('Your health is now:', hh)
@@ -95,6 +106,17 @@ def computersturn(cpuh, hh):
     print('\nMonster chooses pike!')
     attack = True
     damage = random.randint(5, 35)
+    if 'shield' in shield:
+      if 'diamond' in shield:
+        damage = damage * .2
+      elif 'gold' in shield:
+        damage = damage * .4
+      elif 'silver' in shield:
+        damage = damage * .6
+      elif 'iron' in shield:
+        damage = damage * .8
+      elif 'wooden' in shield:
+        damage = damage * .9
     print('Monster did', damage, 'damage!')
     hh = hh - damage
     print('Your health is now:', hh)
@@ -139,8 +161,8 @@ cpuh=100
 level = 1
 material = 'wooden', 'iron', 'silver', 'gold', 'diamond'
 items = 'shield', 'sword'
-sword = None
-shield = None
+sword = 'basic sword'
+shield = 'no shield'
 
 
 
@@ -148,7 +170,7 @@ shield = None
 
 while True:
   placehold = 0
-  placehold = herosturn(hh,cpuh, sword, shield)
+  placehold = herosturn(hh,cpuh, sword)
   
   if placehold[0] == True:
     cpuh = placehold[1]
@@ -167,7 +189,7 @@ while True:
     print('Prepare for the next monster, this one will be tougher')
     break
 
-  placehold = computersturn(cpuh,hh)
+  placehold = computersturn(cpuh,hh, shield)
 
   if placehold[0] == True:
     hh = placehold[1]
@@ -195,6 +217,11 @@ herositem = hitem + ' ' + hmat
 
 print('\nYou got a',herositem+'!','\n')
 
+if 'sword' in herositem:
+  sword = herositem
+elif 'shield' in herositem:
+  shield = herositem
+
 
 
 hh = 100
@@ -203,7 +230,7 @@ level = 2
 
 while True:
   placehold = 0
-  placehold = herosturn(hh,cpuh, sword, shield)
+  placehold = herosturn(hh,cpuh, sword)
   
   if placehold[0] == True:
     cpuh = placehold[1]
@@ -222,7 +249,7 @@ while True:
     print('Prepare for the next monster, this one will be tougher')
     break
 
-  placehold = computersturn(cpuh,hh)
+  placehold = computersturn(cpuh,hh, shield)
 
   if placehold[0] == True:
     hh = placehold[1]
